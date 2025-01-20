@@ -120,6 +120,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -135,6 +136,7 @@
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-grid.rtl.css" />
     <Content Include="Content\bootstrap-grid.rtl.min.css" />
+    <Content Include="Content\bootstrap-lumen.css" />
     <Content Include="Content\bootstrap-reboot.css" />
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap-reboot.rtl.css" />
@@ -183,6 +185,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Movies\Random.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Customers\index.cshtml" />
+    <Content Include="Views\Movies\Index.cshtml" />
+    <Content Include="Views\Customers\details.cshtml" />
+    <Content Include="Views\Movies\details.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

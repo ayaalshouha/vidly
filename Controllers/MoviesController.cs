@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.Ajax.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Web;
 using System.Web.Mvc;
 using vidly.Models;
@@ -11,16 +13,42 @@ namespace vidly.Controllers
     public class MoviesController : Controller
     {
         // GET: Movies
-        public ActionResult Index(int? pageIndex, string sortBy)
+        public ActionResult Index()
         {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
-
-            if (string.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
-
-            return Content(string.Format("pageInde={0}&sortBy={1}", pageIndex, sortBy));
+            var movies = GetMovies();
+            return View(movies);
         }
+
+        public ActionResult Details(int id)
+        {
+            var movie = GetMovies().FirstOrDefault((c) => c.Id == id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movie);
+        }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie { Id = 100, Name = "Baby Boss" },
+                new Movie { Id = 101, Name = "The Italian Job" }
+            };
+        }
+
+        //public ActionResult Index(int? pageIndex, string sortBy)
+        //{
+        //    if (!pageIndex.HasValue)
+        //        pageIndex = 1;
+
+        //    if (string.IsNullOrWhiteSpace(sortBy))
+        //        sortBy = "Name";
+
+        //    return Content(string.Format("pageInde={0}&sortBy={1}", pageIndex, sortBy));
+        //'pli}
         public ActionResult Random()
         {
             var movie = new Movie(){ Name = "Shrek"};
