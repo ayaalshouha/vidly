@@ -8,22 +8,21 @@
 
 @if (!Model.Any())
 {
-
-
-    <p>We don't have any customers yet.</p>
+    <p>We don't have any movies yet.</p>
 }
 else
 {
-
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
-
                 <th>
                     ID
                 </th>
                 <th>
                     Name
+                </th>
+                <th>
+                    Genre
                 </th>
             </tr>
         </thead>
@@ -36,6 +35,9 @@ else
                     </td>
                     <td>
                         @Html.ActionLink(@movie.Name, "Details", "Movies", new {id = @movie.Id}, null)
+                    </td>
+                    <td>
+                        @movie.Genre.Title
                     </td>
                 </tr>
             }

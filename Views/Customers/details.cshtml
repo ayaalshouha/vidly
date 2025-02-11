@@ -7,4 +7,10 @@
 
 <h2>This is Customer @Model.Id</h2>
 <p>Customer name is @Model.Name</p>
+<p>Membership Type is @Model.MembershipType.Name</p>
+
+@if (Model.Birthdate != null)
+            {
+                <p>Customer birthdate is @Model.Birthdate</p>
+            }
 
