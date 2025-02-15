@@ -6,7 +6,9 @@
 }
 
 
-<h2>This is Movie @Model.Id</h2>
-<p>Movie name is @Model.Name</p>
+<h2> @Model.Name</h2>
+<p> Date Added: @(Model.DateAdded?.ToString("yyyy-MM-dd") ?? "N/A")</p>
+<p> Date Released: @(Model.ReleaseDate?.ToString("yyyy-MM-dd") ?? "N/A") </p>
+<p>  Number in Stock : @Model.NumberInStock</p>
 
 
