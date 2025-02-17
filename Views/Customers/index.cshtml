@@ -35,7 +35,9 @@ else
         <header>
 
         <h2>Customers</h2>
-        <button class="btn btn-primary">Add New Customer</button>
+        <a class="btn btn-primary" href=" @Url.Action("New", "Customers")">
+           Add New Customer
+        </a>
         </header>
         <table class="table table-bordered table-hover">
             <thead>
@@ -48,6 +50,7 @@ else
                     </th>
                     <th>Discount Rate</th>
                     <th>MembershipType</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,12 +62,17 @@ else
                             @customer.Id
                         </td>
                         <td>
-                            @Html.ActionLink(customer.Name, "Edit", "Customers", new { id = customer.Id }, null)
+                            @customer.Name
                         </td>
                         <td>
                             @customer.MembershipType.DiscountRate%
                         </td>
                         <td>@customer.MembershipType.Name</td>
+                        <td>
+                            <a class="btn btn-warning" href=" @Url.Action("Edit", "Customers", new {id = customer.Id}, null)">
+                               Edit
+                            </a>
+                        </td>
                     </tr>
 
                 }

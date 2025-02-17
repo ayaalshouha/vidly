@@ -17,25 +17,6 @@ namespace vidly.Controllers
         {
             _context = new ApplicationDbContext();
         }
-        
-      
-        public ActionResult New()
-        {
-            var membershipTypes = _context.MembershipTypes.ToList();
-            var viewModel = new CustomerFormViewModel
-            {
-                MembershipTypes = membershipTypes,
-            };
-            return View("CustomerForm",viewModel);
-        }
-
-        [HttpPost]
-        public ActionResult Create(Customer customer)
-        {
-            _context.Customers.Add(customer);
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Customers");
-        }
         protected override void Dispose(bool disposing)
         {
             // Dispose of managed resources like the context.
@@ -44,7 +25,8 @@ namespace vidly.Controllers
             // Call base Dispose to clean up any other resources.
             base.Dispose(disposing);
         }
-        // GET: Customers
+
+
         [Route("Customers")]
         public ActionResult Index()
         {
@@ -54,10 +36,58 @@ namespace vidly.Controllers
             //immediate execution
             //inlclude is eager loading so objects in customer object are not null
             var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-            
+
             return View(customers);
         }
 
+        public ActionResult New()
+        {
+            var membershipTypes = _context.MembershipTypes.ToList();
+            var viewModel = new CustomerFormViewModel
+            {
+                MembershipTypes = membershipTypes,
+            };
+            return View("CustomerForm",viewModel);
+        }
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel
+            {
+                Customer = customer,
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm", viewModel);
+        }
+
+        [HttpPost]
+        public ActionResult Save(Customer customer)
+        {
+            if(customer.Id == 0)
+                _context.Customers.Add(customer);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.Id == customer.Id); 
+                //security halls 
+                //TryUpdateModel(customerInDb);
+                
+                customerInDb.Name = customer.Name;
+                customerInDb.MembershipTypeId = customer.MembershipTypeId;
+                customerInDb.Birthdate = customer.Birthdate;
+                customerInDb.IsSubscribedToNewsletter = customer.IsSubscribedToNewsletter;
+                customerInDb.MembershipType = customer.MembershipType;
+               
+                //Mapper.Map(customerDTO, customerInDb);
+
+            }
+            
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Customers");
+        }
+              
         public ActionResult Details(int id)
         {
             //immediate execution beacuse using single or default method
@@ -69,20 +99,5 @@ namespace vidly.Controllers
 
             return View(customer);
         }
-
-        public ActionResult Edit(int id)
-        {
-            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
-            if(customer == null) 
-                return HttpNotFound();
-
-            var viewModel = new CustomerFormViewModel
-            {
-                Customer = customer,
-                MembershipTypes = _context.MembershipTypes.ToList()
-            };
-            return View("CustomerForm", viewModel);
-        }
-
     }
 }
