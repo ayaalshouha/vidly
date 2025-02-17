@@ -197,11 +197,20 @@
     <Compile Include="Migrations\202502171402087_updateMovie.Designer.cs">
       <DependentUpon>202502171402087_updateMovie.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202502171602425_updateMovie1.cs" />
+    <Compile Include="Migrations\202502171602425_updateMovie1.Designer.cs">
+      <DependentUpon>202502171602425_updateMovie1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202502171604307_updateMovie2.cs" />
+    <Compile Include="Migrations\202502171604307_updateMovie2.Designer.cs">
+      <DependentUpon>202502171604307_updateMovie2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\MembershipType.cs" />
+    <Compile Include="Models\Min18YearsIfMember.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CustomerFormViewModel.cs" />
@@ -349,6 +358,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502171402087_updateMovie.resx">
       <DependentUpon>202502171402087_updateMovie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502171602425_updateMovie1.resx">
+      <DependentUpon>202502171602425_updateMovie1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502171604307_updateMovie2.resx">
+      <DependentUpon>202502171604307_updateMovie2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

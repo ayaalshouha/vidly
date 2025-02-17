@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using vidly.Models;
 using vidly.ViewModels;
+using System.Data.Entity.Validation;
 
 namespace vidly.Controllers
 {
@@ -66,6 +67,15 @@ namespace vidly.Controllers
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new CustomerFormViewModel
+                {
+                    MembershipTypes = _context.MembershipTypes.ToList(),
+                    Customer = customer,
+                };
+                return View("CustomerForm", viewModel);
+            }
             if(customer.Id == 0)
                 _context.Customers.Add(customer);
             else
@@ -83,7 +93,6 @@ namespace vidly.Controllers
                 //Mapper.Map(customerDTO, customerInDb);
 
             }
-            
             _context.SaveChanges();
             return RedirectToAction("Index", "Customers");
         }

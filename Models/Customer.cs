@@ -9,10 +9,9 @@ namespace vidly.Models
     public class Customer
     {
         public int Id { get; set; }
-        //data annotation
-        //overriding the default convensions
-        [Required]
+      
         [StringLength(255)]
+        [Required(ErrorMessage = "This field is required")]
         public string Name { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
         public MembershipType MembershipType { get; set; }
