@@ -64,14 +64,42 @@ namespace vidly.Controllers
             {
                 Genres = genres,
             };
-            return View("MovieForm",movieForm);
+            return View("MovieForm", movieForm);
         }
         public ActionResult Edit(int id)
         {
-            //edit process
-
-            return Content("movie number " + id + " has been edited");
+            var movie = _context.Movies.SingleOrDefault(m=>m.Id == id);
+            if(movie == null)
+            {
+                return HttpNotFound();
+            }
+            
+            var viewModel = new MovieFormViewModel
+            {
+                Genres = _context.Genres.ToList(),
+                Movie = movie,
+            };
+            return View("MovieForm", viewModel);
         }
+
+        [HttpPost]
+        public ActionResult Save(Movie movie)
+        {
+            if (movie.Id == 0)
+                _context.Movies.Add(movie);
+            else
+            {
+                var movieDB = _context.Movies.Single(m=>m.Id==movie.Id);
+                movieDB.Name = movie.Name;   
+                movieDB.DateAdded = movie.DateAdded;
+                movieDB.ReleaseDate=movie.ReleaseDate;
+                movieDB.Genre = movie.Genre;
+                movieDB.NumberInStock = movie.NumberInStock;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Index", "Movies");
+        }
+
 
         [Route("movies/released/{year:regex(\\d{4})}/{month:regex(\\d{2}):range(1,12)}")]
         public ActionResult ByReleaseDate(int year, byte month)

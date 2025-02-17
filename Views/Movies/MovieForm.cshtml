@@ -38,13 +38,13 @@ else
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Genre)
-        @Html.DropDownListFor(m => m.Genres, 
-            new SelectList(Model.Genres, "Id", "Title"), 
+        @Html.DropDownListFor(m => m.Genres,
+            new SelectList(Model.Genres, "Id", "Title"),
             "Select Movie's Genre",
             new { @class = "form-control" })
     </div>
-    
-    @Html.HiddenFor(m=>m.Movie.Id)
+
+    @Html.HiddenFor(m => m.Movie.Id)
     <button type="submit" class="btn btn-primary">Save</button>
- }
+}
 
