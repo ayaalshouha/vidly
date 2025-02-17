@@ -193,6 +193,10 @@
     <Compile Include="Migrations\202502111324451_FixMovieModel.Designer.cs">
       <DependentUpon>202502111324451_FixMovieModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202502171402087_updateMovie.cs" />
+    <Compile Include="Migrations\202502171402087_updateMovie.Designer.cs">
+      <DependentUpon>202502171402087_updateMovie.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -342,6 +346,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202502111324451_FixMovieModel.resx">
       <DependentUpon>202502111324451_FixMovieModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202502171402087_updateMovie.resx">
+      <DependentUpon>202502171402087_updateMovie.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

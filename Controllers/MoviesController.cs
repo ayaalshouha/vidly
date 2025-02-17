@@ -25,46 +25,18 @@ namespace vidly.Controllers
         }
         public ActionResult Index()
         {
-            var movies = _context.Movies.Include(c => c.Genre).ToList();
+            var movies = _context.Movies.Include(m => m.Genre).ToList();
             return View(movies);
-        }
-
-        public ActionResult Details(int id)
-        {
-            var movie = _context.Movies.Include(c => c.Genre).FirstOrDefault((c) => c.Id == id);
-            if (movie == null)
-            {
-                return HttpNotFound();
-            }
-
-            return View(movie);
-        }
-        public ActionResult Random()
-        {
-            var movie = new Movie(){ Name = "Shrek"};
-            var customers = new List<Customer>
-            {
-                new Customer {Name ="Mohammad", Id=100},
-                new Customer {Name ="Ahmad", Id=101}
-            };
-
-            var viewModel = new RandomViewModelMovie
-            {
-                Movie = movie,
-                Customers = customers,
-            };
-
-            return View(viewModel);
         }
 
         public ActionResult New()
         {
             var genres = _context.Genres.ToList();
-            var movieForm = new MovieFormViewModel
+            var viewModel = new MovieFormViewModel
             {
                 Genres = genres,
             };
-            return View("MovieForm", movieForm);
+            return View("MovieForm", viewModel);
         }
         public ActionResult Edit(int id)
         {
@@ -94,6 +66,7 @@ namespace vidly.Controllers
                 movieDB.DateAdded = movie.DateAdded;
                 movieDB.ReleaseDate=movie.ReleaseDate;
                 movieDB.Genre = movie.Genre;
+                movieDB.GenreId = movie.GenreId;
                 movieDB.NumberInStock = movie.NumberInStock;
             }
             _context.SaveChanges();
@@ -105,6 +78,16 @@ namespace vidly.Controllers
         public ActionResult ByReleaseDate(int year, byte month)
         {
             return Content(year + "/" + month);
+        }
+        public ActionResult Details(int id)
+        {
+            var movie = _context.Movies.Include(c => c.Genre).FirstOrDefault((c) => c.Id == id);
+            if (movie == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(movie);
         }
     }
 }
