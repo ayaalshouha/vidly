@@ -5,49 +5,60 @@
 }
 
 <div class="container-box">
+    <header>
+
+        <h2>Movies</h2>
+        <a class="btn btn-primary" href=" @Url.Action("New", "Movies")">
+            Add New Movie
+        </a>
+    </header>
+
+
+    @if (!Model.Any())
+    {
+        <p>We don't have any movies yet.</p>
+    }
+    else
+    {
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>
+                        ID
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Genre
+                    </th>
+                    <th>
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var movie in Model)
+                {
+                    <tr>
+                        <td>
+                            @movie.Id
+                        </td>
+                        <td>
+                            @movie.Name
+                        </td>
+                        <td>
+                            @movie.Genre.Title
+                        </td>
+                        <td>
+                            <a class="btn btn-warning" href="@Url.Action("Edit", "Movies", new {id = movie.Id})">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
 
 </div>
-<h2>Movies</h2>
-
-@if (!Model.Any())
-{
-    <p>We don't have any movies yet.</p>
-}
-else
-{
-    <table class="table table-bordered table-hover">
-        <thead>
-            <tr>
-                <th>
-                    ID
-                </th>
-                <th>
-                    Name
-                </th>
-                <th>
-                    Genre
-                </th>
-                <th>
-                    Actions
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var movie in Model)
-            {
-                <tr>
-                    <td>
-                        @movie.Id
-                    </td>
-                    <td>
-                        @Html.ActionLink(@movie.Name, "Details", "Movies", new {id = @movie.Id}, null)
-                    </td>
-                    <td>
-                        @movie.Genre.Title
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
-
