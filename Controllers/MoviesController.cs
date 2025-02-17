@@ -57,6 +57,15 @@ namespace vidly.Controllers
             return View(viewModel);
         }
 
+        public ActionResult New()
+        {
+            var genres = _context.Genres.ToList();
+            var movieForm = new MovieFormViewModel
+            {
+                Genres = genres,
+            };
+            return View("MovieForm",movieForm);
+        }
         public ActionResult Edit(int id)
         {
             //edit process
