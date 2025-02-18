@@ -43,6 +43,14 @@ else
         </label>
     </div>
     @Html.HiddenFor(m => m.Customer.Id);
+
+    @*
+        - HTML helper in ASP.NET MVC that generates a hidden form field containing an anti-forgery token.
+        - helps protect against Cross-Site Request Forgery (CSRF) attacks.
+        - mainly used to secure form submissions.
+        - When you include @Html.AntiForgeryToken(); in your form, ASP.NET generates a unique token and 
+          stores it in both a hidden field (__RequestVerificationToken) and a cookie.
+    *@
     @Html.AntiForgeryToken();
     @Html.ValidationSummary(true, "**Invalid fields!");
     <button type="submit" class="btn btn-primary">Save</button>
