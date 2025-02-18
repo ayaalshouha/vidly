@@ -19,21 +19,25 @@ else
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.Name)
         @Html.TextBoxFor(m => m.Movie.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.Name)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.NumberInStock)
         @Html.TextBoxFor(m => m.Movie.NumberInStock, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.NumberInStock)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.ReleaseDate)
         @Html.TextBoxFor(m => m.Movie.ReleaseDate, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.ReleaseDate)
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Movie.DateAdded)
         @Html.TextBoxFor(m => m.Movie.DateAdded, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.DateAdded)
     </div>
 
     <div class="form-group">
@@ -42,9 +46,19 @@ else
             new SelectList(Model.Genres, "Id", "Title"),
             "Select Movie's Genre",
             new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Movie.GenreId)
     </div>
 
     @Html.HiddenFor(m => m.Movie.Id)
+
+    @*CSRF*@
+    @Html.AntiForgeryToken();
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@*for client side validation*@
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
 
