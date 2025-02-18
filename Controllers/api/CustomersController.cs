@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Policy;
 using System.Web.Http;
 using vidly.Models;
 
@@ -28,8 +24,8 @@ namespace vidly.Controllers.api
         public Customer GetCustomer(int id)
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id== id);
-             if(customer == null) 
-                throw new HttpResponseException(HttpStatusCode.NotFound) 
+            if (customer == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
                     
                     
              return customer; 
@@ -47,7 +43,6 @@ namespace vidly.Controllers.api
             return customer;
         }
 
-        //PUT
         [HttpPut]
         public Customer Update(int id, Customer customer)
         {
@@ -69,7 +64,6 @@ namespace vidly.Controllers.api
             return customerInDb;
         }
 
-        //delete 
         [HttpDelete]
         public bool Delete(int id)
         {
