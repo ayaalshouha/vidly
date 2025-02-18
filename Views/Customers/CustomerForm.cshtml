@@ -43,6 +43,18 @@ else
         </label>
     </div>
     @Html.HiddenFor(m => m.Customer.Id);
+    
     @Html.ValidationSummary(true, "**Invalid fields!");
     <button type="submit" class="btn btn-primary">Save</button>
+}
+
+@*
+    - Client-Side Validation
+    - When using html helper method razor view engine add additional attr to the markup
+      based on data annotations applied to the element
+    - only work for standard validation not customized ones 
+*@
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
