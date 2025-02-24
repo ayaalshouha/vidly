@@ -53,9 +53,10 @@
                         </td>
                         <td>@customer.MembershipType.Name</td>
                         <td>
-                            <a class="btn btn-warning" href=" @Url.Action("Edit", "Customers", new {id = customer.Id}, null)">
+                            <a class="btn btn-warning" href="@Url.Action("Edit", "Customers", new {id = customer.Id}, null)">
                                 Edit
                             </a>
+                            <button class="btn btn-danger">Delete</button>
                         </td>
                     </tr>
 
