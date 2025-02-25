@@ -305,7 +305,7 @@ svg {
 
 table {
   caption-side: bottom;
-  border-collapse: collapse;
+  border-collapse: collapse !important;
 }
 
 caption {
@@ -4964,7 +4964,7 @@ textarea.form-control-lg {
   }
   .list-group-horizontal-md > .list-group-item + .list-group-item {
     border-top-width: var(--bs-list-group-border-width);
-    border-right-width: 0;
+/*    border-right-width: 0;*/
   }
   .list-group-horizontal-md > .list-group-item + .list-group-item.active {
     margin-right: calc(-1 * var(--bs-list-group-border-width));
@@ -4977,7 +4977,7 @@ textarea.form-control-lg {
   }
   .list-group-horizontal-lg > .list-group-item:first-child:not(:last-child) {
     border-bottom-right-radius: var(--bs-list-group-border-radius);
-    border-top-left-radius: 0;
+    border-top-left-radius: 0
   }
   .list-group-horizontal-lg > .list-group-item:last-child:not(:first-child) {
     border-top-left-radius: var(--bs-list-group-border-radius);

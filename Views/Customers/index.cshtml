@@ -70,20 +70,27 @@
 @section scripts {
     <script>
         $(document).ready(function () {
-            $("#customers").on("click", ".js-delete", function () {
-                bootbox.confirm("Are you sure you want to delete this customer?", function (result) {
-                    if (result) {
-                        var button = $(this);
-                        $.ajax({
-                            URL: "/api/customers" + button.attr("data-customer-id"),
-                            method: "DELETE",
-                            sucess: function () {
-                                button.parents("tr").remove();
-                            }
-                        })
+            $("#customers").DataTable();
+            //one event handler for all clicks
+            //will be called only on click event for element has class js-delete
+            $("#customers").on("click", ".js-delete" ,function () {
+                var button = $(this);
+                bootbox.confirm({
+                    title: 'Confirm',
+                    message: "Are you sure you want to delete this customer?",
+                    callback: function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/customers/" + button.attr("data-customer-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    button.parents("tr").remove();
+                                }
+                            })
+                        }
                     }
-                }) 
-            });
+                })
+            })
         });
     </script>
 }
