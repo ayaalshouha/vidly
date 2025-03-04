@@ -31,14 +31,15 @@ namespace vidly.Controllers
         [Route("Customers")]
         public ActionResult Index()
         {
-            //Customers prop is a dbSet in dbContext
-            //deferred exexution: doesn't run until you enumerate the results  
-            //var customers = _context.Customers; 
-            //immediate execution
-            //inlclude is eager loading so objects in customer object are not null
-            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+            //    //Customers prop is a dbSet in dbContext
+            //    //deferred exexution: doesn't run until you enumerate the results  
+            //    //var customers = _context.Customers; 
+            //    //immediate execution
+            //    //inlclude is eager loading so objects in customer object are not null
+            //    var customers = _context.Customers.Include(c => c.MembershipType).ToList();
+                //return View(customers);
 
-            return View(customers);
+            return View();
         }
 
         public ActionResult New()
