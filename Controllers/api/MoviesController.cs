@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Data.Entity;
 using System.Net.Http;
 using System.Web.Http;
 using vidly.Models;
@@ -20,7 +21,11 @@ namespace vidly.Controllers.api
         [HttpGet]
         public IHttpActionResult Movies()
         {
-            return Ok(_context.Movies.ToList().Select(Mapper.Map<Movie, MovieDTO>));
+            var movieDTO = _context.Movies
+                .Include(m => m.Genre)
+                .ToList()
+                .Select(Mapper.Map<Movie, MovieDTO>);
+            return Ok(movieDTO);
         }
 
         [HttpGet]
