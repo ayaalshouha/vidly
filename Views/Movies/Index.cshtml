@@ -29,30 +29,6 @@
                 </th>
             </tr>
         </thead>
-        @*<tbody>
-            @foreach (var movie in Model)
-            {
-                <tr>
-                    <td>
-                        @movie.Id
-                    </td>
-                    <td>
-                        @movie.Name
-                    </td>
-                    <td>
-                        @movie.Genre.Title
-                    </td>
-                    <td>
-                        <a class="btn btn-warning" href="@Url.Action("Edit", "Movies", new {id = movie.Id})">
-                            Edit
-                        </a>
-                        <button data-movie-id="@movie.Id" class="btn btn-danger js-delete">
-                            Delete
-                        </button>
-                    </td>
-                </tr>
-                }
-        </tbody>*@
     </table>
 </div>
 
